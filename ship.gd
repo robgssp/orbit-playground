@@ -32,7 +32,7 @@ func _physics_process(delta):
 	pass
 	
 func controls(state):
-	var forward = get_global_transform().basis.xform(Vector3(1, 0, 0))
+	var forward = global_transform.basis.xform(Vector3(1, 0, 0))
 	
 	state.add_force(forward * thrust * 
 						(Input.get_action_strength("forward") -

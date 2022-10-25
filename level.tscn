@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://level.gd" type="Script" id=1]
 [ext_resource path="res://ship.gd" type="Script" id=2]
+[ext_resource path="res://droidsans.tres" type="DynamicFont" id=3]
 
 [sub_resource type="SphereShape" id=1]
 
@@ -11,13 +12,6 @@
 
 [sub_resource type="ConvexPolygonShape" id=4]
 points = PoolVector3Array( 0, 1, 1, 1, -1, 1, 0, 1, -1, -1, -1, 1, 1, -1, -1, -1, -1, -1 )
-
-[sub_resource type="DynamicFontData" id=6]
-font_path = "res://droidsans.ttf"
-
-[sub_resource type="DynamicFont" id=5]
-size = 32
-font_data = SubResource( 6 )
 
 [node name="Spatial" type="Spatial"]
 script = ExtResource( 1 )
@@ -71,7 +65,22 @@ margin_left = 31.0
 margin_top = 35.0
 margin_right = 458.0
 margin_bottom = 73.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = ExtResource( 3 )
 text = "Test Words"
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -334.0
+margin_top = 44.0
+margin_right = -61.0
+margin_bottom = 246.0
+custom_fonts/font = ExtResource( 3 )
+text = "Pitch: O/L
+Roll: I/P
+Yaw: K/;
+Thrust: Shift/Ctrl
+Switch Camera: ,"
+align = 2
 
 [connection signal="timeout" from="Ship/Timer" to="Ship" method="_drop_breadcrumb"]
