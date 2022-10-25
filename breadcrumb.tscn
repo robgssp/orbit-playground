@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://breadcrumb.tres" type="Material" id=1]
+[ext_resource path="res://breadcrumb.gd" type="Script" id=2]
+
+[sub_resource type="SphereMesh" id=2]
+
+[node name="Breadcrumb" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
+material_override = ExtResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
