@@ -54,7 +54,7 @@ transform = Transform( -4.37114e-08, 1, -7.94093e-23, 4.37114e-08, 1.91069e-15, 
 shape = SubResource( 4 )
 
 [node name="ShipCamera" type="Camera" parent="Ship"]
-transform = Transform( -4.37114e-08, 0.129644, -0.991561, 0, 0.991561, 0.129644, 1, 5.6669e-09, -4.33425e-08, -3.653, 2.384, 0 )
+transform = Transform( -4.37114e-08, 0.129505, -0.991579, 0, 0.991579, 0.129505, 1, 5.66085e-09, -4.33433e-08, -3.653, 2.384, 0 )
 fov = 80.0
 far = 10000.0
 

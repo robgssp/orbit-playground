@@ -32,10 +32,13 @@ func draw_waterline(pos: Vector2):
 				  pos + waterline_points[i], hud_green, 3, true)
 				
 func draw_velvec(pos: Vector2):
-	draw_arc(pos, 15, 0, 2*PI, 20, hud_green, 5, true)
-	draw_line(pos+Vector2(0,-15), pos+Vector2(0, -30), hud_green, 5, true)
-	draw_line(pos+Vector2(15, 0), pos+Vector2(30, 0), hud_green, 5, true)
-	draw_line(pos+Vector2(-15, 0), pos+Vector2(-30, 0), hud_green, 5, true)
+	var radius = 8
+	var wings = 21
+	var width = 3
+	draw_arc(pos, radius, 0, 2*PI, 20, hud_green, 3, true)
+	draw_line(pos+Vector2(0,-radius), pos+Vector2(0, -wings), hud_green, 3, true)
+	draw_line(pos+Vector2(radius, 0), pos+Vector2(wings, 0), hud_green, 3, true)
+	draw_line(pos+Vector2(-radius, 0), pos+Vector2(-wings, 0), hud_green, 3, true)
 
 func _draw():
 	var heading = ship.global_transform.basis.xform(Vector3(1,0,0))
