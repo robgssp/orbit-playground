@@ -1,8 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://level.gd" type="Script" id=1]
 [ext_resource path="res://ship.gd" type="Script" id=2]
 [ext_resource path="res://droidsans.tres" type="DynamicFont" id=3]
+[ext_resource path="res://milky_way_large.png" type="Texture" id=4]
+[ext_resource path="res://hud.gd" type="Script" id=5]
+[ext_resource path="res://assets/arrow-freecad.tscn" type="PackedScene" id=6]
 
 [sub_resource type="SphereShape" id=1]
 
@@ -13,7 +16,18 @@
 [sub_resource type="ConvexPolygonShape" id=4]
 points = PoolVector3Array( 0, 1, 1, 1, -1, 1, 0, 1, -1, -1, -1, 1, 1, -1, -1, -1, -1, -1 )
 
-[node name="Spatial" type="Spatial"]
+[sub_resource type="PanoramaSky" id=5]
+panorama = ExtResource( 4 )
+
+[sub_resource type="Environment" id=6]
+background_mode = 2
+background_sky = SubResource( 5 )
+background_energy = 0.6
+dof_blur_far_distance = 100.0
+dof_blur_near_distance = 3.5
+dof_blur_near_quality = 2
+
+[node name="World" type="Spatial"]
 script = ExtResource( 1 )
 
 [node name="Planet" type="StaticBody" parent="."]
@@ -25,7 +39,6 @@ shape = SubResource( 1 )
 [node name="MeshInstance" type="MeshInstance" parent="Planet"]
 transform = Transform( 20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0 )
 mesh = SubResource( 2 )
-material/0 = null
 
 [node name="Ship" type="RigidBody" parent="."]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 36.9138, 0, 0 )
@@ -35,14 +48,14 @@ script = ExtResource( 2 )
 [node name="MeshInstance" type="MeshInstance" parent="Ship"]
 transform = Transform( -4.37114e-08, 1, -2.64698e-23, 4.37114e-08, 1.91069e-15, 0.2, 1, 4.37114e-08, -8.74228e-09, 0, 0, 0 )
 mesh = SubResource( 3 )
-material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="Ship"]
 transform = Transform( -4.37114e-08, 1, -7.94093e-23, 4.37114e-08, 1.91069e-15, 0.2, 1, 4.37114e-08, -8.74227e-09, 0, 0, 0 )
 shape = SubResource( 4 )
 
 [node name="ShipCamera" type="Camera" parent="Ship"]
-transform = Transform( -4.37114e-08, 0.258819, -0.965926, 0, 0.965926, 0.258819, 1, 1.13133e-08, -4.2222e-08, -4, 2.171, 0 )
+transform = Transform( -4.37114e-08, 0.129644, -0.991561, 0, 0.991561, 0.129644, 1, 5.6669e-09, -4.33425e-08, -3.653, 2.384, 0 )
+fov = 80.0
 far = 10000.0
 
 [node name="Timer" type="Timer" parent="Ship"]
@@ -51,6 +64,10 @@ autostart = true
 
 [node name="Rear" type="Spatial" parent="Ship"]
 transform = Transform( 1, 0, -3.55271e-15, 0, 1, 0, 3.55271e-15, 0, 1, -1.00762, 0, -4.47035e-08 )
+
+[node name="HeadingArrow" parent="Ship" instance=ExtResource( 6 )]
+
+[node name="VelocityArrow" parent="Ship" instance=ExtResource( 6 )]
 
 [node name="TopDownCamera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 50, 0 )
@@ -66,7 +83,7 @@ margin_top = 35.0
 margin_right = 458.0
 margin_bottom = 73.0
 custom_fonts/font = ExtResource( 3 )
-text = "Test Words"
+text = "Orbital Data"
 
 [node name="Label" type="Label" parent="."]
 anchor_left = 1.0
@@ -82,5 +99,21 @@ Yaw: K/;
 Thrust: Shift/Ctrl
 Switch Camera: ,"
 align = 2
+
+[node name="Debug" type="Label" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = -85.0
+margin_right = 215.0
+margin_bottom = -47.0
+custom_fonts/font = ExtResource( 3 )
+text = "Debug Info"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 6 )
+
+[node name="HUD" type="Node2D" parent="."]
+script = ExtResource( 5 )
 
 [connection signal="timeout" from="Ship/Timer" to="Ship" method="_drop_breadcrumb"]

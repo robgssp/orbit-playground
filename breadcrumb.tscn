@@ -12,4 +12,3 @@ script = ExtResource( 2 )
 transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
 material_override = ExtResource( 1 )
 mesh = SubResource( 2 )
-material/0 = null

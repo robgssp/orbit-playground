@@ -67,6 +67,10 @@ swap_camera={
  ]
 }
 
+[mono]
+
+project/assembly_name="orbit"
+
 [physics]
 
 common/enable_pause_aware_picking=true
@@ -76,4 +80,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+quality/filters/msaa=3
 environment/default_environment="res://default_env.tres"
