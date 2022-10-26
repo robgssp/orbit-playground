@@ -18,15 +18,15 @@ func vec_to_screen(vec: Vector3):
 	else:
 		return camera.unproject_position(vec_mod)
 
-var waterline_points = [Vector2(-15, 0),
-						Vector2(-10,0),
-						Vector2(-5,-5),
-						Vector2(0,5),
-						Vector2(5,-5),
-						Vector2(10,0),
-						Vector2(15,0)]
-
 func draw_waterline(pos: Vector2):
+	var waterline_points = [Vector2(-18, 0),
+						Vector2(-10,0),
+						Vector2(-5,10),
+						Vector2(0,0),
+						Vector2(5,10),
+						Vector2(10,0),
+						Vector2(18,0)]
+						
 	for i in range(1,len(waterline_points)):
 		draw_line(pos + waterline_points[i-1], 
 				  pos + waterline_points[i], hud_green, 3, true)
